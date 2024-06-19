@@ -1,0 +1,51 @@
+A student grade tracker is a software tool designed to monitor and manage academic performance. It allows teachers to input grades, calculates averages, and generates reports for students and parents. 
+Students can set goals, track progress, and receive notifications. The program enhances communication between stakeholders and ensures data security with secure access controls. Overall, it aims to improve 
+accountability, facilitate goal-setting, and provide insights into academic achievements.
+
+
+
+def add_grade(self, grade):
+        self.grades.append(grade)
+    def average_grade(self):
+        if not self.grades:
+            return 0
+        return sum(self.grades) / len(self.grades)
+class GradeTracker:
+    def __init__(self):
+        self.students = {}
+    def add_student(self, name):
+        if name not in self.students:
+            self.students[name] = Student(name)
+            print(f"Student '{name}' added.")
+        else:
+            print(f"Student '{name}' already exists.")
+    def add_grade(self, name, grade):
+        if name in self.students:
+            self.students[name].add_grade(grade)
+            print(f"Grade '{grade}' added for student '{name}'.")
+        else:
+            print(f"Student '{name}' does not exist.")
+    def print_average_grades(self):
+        for name, student in self.students.items():
+            avg_grade = student.average_grade()
+            print(f"Student: {name}, Average Grade: {avg_grade:.2f}")
+    def print_all_grades(self):
+        for name, student in self.students.items():
+            print(f"Student: {name}, Grades: {student.grades}")
+
+
+# Example usage:
+tracker = GradeTracker()
+
+tracker.add_student("Alice")
+tracker.add_student("Bob")
+tracker.add_student("Alice")  
+
+tracker.add_grade("Alice", 85)
+tracker.add_grade("Alice", 90)
+tracker.add_grade("Bob", 75)
+tracker.add_grade("Bob", 80)
+
+tracker.print_all_grades()
+
+tracker.print_average_grades()
